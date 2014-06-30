@@ -50,9 +50,11 @@ sub prepare_files {
         copy("templates/setup_hdfs_volumes.pl", "$work_dir/$node/setup_hdfs_volumes.pl");
         copy("templates/setup_volumes.pl", "$work_dir/$node/setup_volumes.pl");
         foreach my $distributed_file (qw(gluster moosefs)) {
+            copy("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh");
             copy("templates/setup_${distributed_file}_peers.pl", "$work_dir/$node/setup_${distributed_file}_peers.pl");
             copy("templates/setup_${distributed_file}_service.pl", "$work_dir/$node/setup_${distributed_file}_service.pl");
             copy("templates/setup_${distributed_file}_volumes.pl", "$work_dir/$node/setup_${distributed_file}_volumes.pl");
+            mark_executable("$work_dir/$node/setup_${distributed_file}_install.sh");
         }
         # these are used for when the box is rebooted, it setups the /etc/hosts file for example
         replace("templates/hadoop-init-master", "$work_dir/$node/hadoop-init-master", '%{HOST}', $node);
@@ -177,6 +179,11 @@ sub copy {
         print $out $_;
     }
     close $in, $out;
+}
+
+sub mark_executable {
+    my ($filename) = @_;
+    chmod 0755, $filename;
 }
 
 sub run {
