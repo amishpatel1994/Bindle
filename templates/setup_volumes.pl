@@ -17,14 +17,14 @@ use Getopt::Long;
 
 my $out_file = "mount_report.txt";
 my $whitelist;
-my $gluster_directory_list;
+my $distributed_file_directory_list;
 my @wlist;
 my @dir_list;
 
 GetOptions (
   "output=s" => \$out_file,
   "whitelist=s" => \$whitelist,
-  "directorypath=s" => \$gluster_directory_list,
+  "directorypath=s" => \$distributed_file_directory_list,
 );
 
 if (defined $whitelist){
@@ -33,8 +33,8 @@ if (defined $whitelist){
 else{
   @wlist = ();
 }
-if (defined $gluster_directory_list){
-  @dir_list = read_list($gluster_directory_list);
+if (defined $distributed_file_directory_list){
+  @dir_list = read_list($distributed_file_directory_list);
   make_directories(@dir_list);
 }
 else{
