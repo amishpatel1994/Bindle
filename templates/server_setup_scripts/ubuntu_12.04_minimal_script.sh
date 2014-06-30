@@ -108,7 +108,7 @@ fi
 # setup ephemeral and EBS volumes that are attached to this system
 apt-get update
 apt-get -q -y --force-yes install ecryptfs-utils xfsprogs
-perl /vagrant/setup_volumes.pl --output /vagrant/volumes_report.txt %{GLUSTER_DEVICE_WHITELIST} %{GLUSTER_DIRECTORY_PATH}
+perl /vagrant/setup_volumes.pl --output /vagrant/volumes_report.txt %{DISTRIBUTED_FILE_DEVICE_WHITELIST} %{DISTRIBUTED_FILE_DIRECTORY_PATH}
 
 # now setup volumes for use with gluster
 # the default version of gluster (3.2?) appears to suffer from the problem described here: https://bugzilla.redhat.com/show_bug.cgi?id=807976
@@ -118,7 +118,7 @@ if [ "%{DISTRIBUTED_FILE_SYSTEM}" == "gluster" ]; then
 add-apt-repository -y ppa:semiosis/ubuntu-glusterfs-3.5
 apt-get update
 apt-get -q -y --force-yes install glusterfs-server
-perl /vagrant/setup_gluster_volumes.pl --dir-map /vagrant/volumes_report.txt --output /vagrant/gluster_volumes_report.txt
+perl /vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_volumes.pl --dir-map /vagrant/volumes_report.txt --output /vagrant/distributed_file_volumes_report.txt
 fi
 
 if [ "%{DISTRIBUTED_FILE_SYSTEM}" == "moose" ]; then
