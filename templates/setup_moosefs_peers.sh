@@ -1,8 +1,10 @@
+#!/usr/bin/env perl -w
+
 use strict;
 use Getopt::Long;
 
 # PURPOSE:
-# This script attempts to probe peer all the moosefs hosts
+# This script attempts to connect to the peers
 # ASSUMPTIONS:
 # *
 # TODO

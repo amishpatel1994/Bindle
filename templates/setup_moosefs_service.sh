@@ -2,6 +2,8 @@ use strict;
 use Getopt::Long;
 
 # PURPOSE:
+#!/usr/bin/env perl -w
+
 # This script attempts to start the moosefs volume
 # ASSUMPTIONS:
 # *
