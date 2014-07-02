@@ -50,11 +50,11 @@ sub prepare_files {
         copy("templates/setup_hdfs_volumes.pl", "$work_dir/$node/setup_hdfs_volumes.pl");
         copy("templates/setup_volumes.pl", "$work_dir/$node/setup_volumes.pl");
         foreach my $distributed_file (qw(gluster moosefs)) {
-            copy("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh");
-            copy("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh");
-            copy("templates/setup_${distributed_file}_peers.sh", "$work_dir/$node/setup_${distributed_file}_peers.sh");
-            copy("templates/setup_${distributed_file}_service.sh", "$work_dir/$node/setup_${distributed_file}_service.sh");
-            copy("templates/setup_${distributed_file}_volumes.sh", "$work_dir/$node/setup_${distributed_file}_volumes.sh");
+            autoreplace("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh", $configs);
+            autoreplace("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh", $configs);
+            autoreplace("templates/setup_${distributed_file}_peers.sh", "$work_dir/$node/setup_${distributed_file}_peers.sh", $configs);
+            autoreplace("templates/setup_${distributed_file}_service.sh", "$work_dir/$node/setup_${distributed_file}_service.sh", $configs);
+            autoreplace("templates/setup_${distributed_file}_volumes.sh", "$work_dir/$node/setup_${distributed_file}_volumes.sh", $configs);
             mark_executable("$work_dir/$node/setup_${distributed_file}_install.sh");
             mark_executable("$work_dir/$node/setup_${distributed_file}_mount.sh");
             mark_executable("$work_dir/$node/setup_${distributed_file}_peers.sh");
