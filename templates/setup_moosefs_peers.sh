@@ -1,51 +1,14 @@
-#!/usr/bin/env perl -w
-
-use strict;
-use Getopt::Long;
+#!/bin/bash
 
 # PURPOSE:
-# This script attempts to connect to the peers
+# This script attempts to prepare for connection from peers
 # ASSUMPTIONS:
-# *
+# * only run on the master node
+# * list of all hosts in --host 
 # TODO
 # * 
 
-exit(1)
+# The master doesn't need to know about the peers, so we can skip this stage
+# and not really do anything.
 
-# my $host;
-
-# GetOptions (
-#   "host=s" => \$host
-# );
-
-# my $vol_report = `cat /vagrant/volumes_report.txt`;
-# # if there are no volumes present, don't set up gluster volumes!
-# if ($vol_report eq ""){
-#   print "Not Setting up gluster peers because no gluster devices/directory were specified in the config file!\n";
-#   exit;
-# }
-
-
-# my $out_txt;
-
-# open IN, "<$host" or die "Cannot open file $host\n";
-# while(<IN>) {
-#   chomp;
-#   my @a = split /\s+/;
-#   next if (scalar(@a) != 2);
-#   my $cmd = "gluster peer probe $a[1]";
-#   print "CMD: $cmd\n";
-#   if (system($cmd)) {
-#     print "Problems peering with '$cmd'\n";
-#     print " Will try restarting daemon...\n";
-#     system("/etc/init.d/glusterfs-server restart");
-#     sleep 15;
-#     if (system($cmd)) {
-#       my $output = `$cmd`;
-#       print "Tried again but still problems peering with '$cmd' output is '$output'\n";
-#     }
-#   }
-#   sleep 5;
-# }
-# close IN;
-
+exit 0
