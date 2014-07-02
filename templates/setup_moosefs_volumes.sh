@@ -11,8 +11,6 @@ use Getopt::Long;
 # TODO
 # * 
 
-exit(1);
-
 my $dir_map;
 my $output;
 
