@@ -247,14 +247,14 @@ through the most obvious parameters (ie. user, apikey, etc):
     # this list is to indicate the devices you want to use to setup volumes.
     # to find out the list of devices you can use, execute “df | grep /dev/” on the launcher host. 
     # DO NOT use any device that ends with "a" or "a" and a number following it(sda or sda1) because these are used for root partition
-    # Also, if you don't want to use any devices to set up volumes, please keep the value empty (gluster_device_whitelist=''). You need to do that when you are dealing with a single node cluster or when you have no devices to work with
+    # Also, if you don't want to use any devices to set up volumes, please keep the value empty (distributed_file_device_whitelist=''). You need to do that when you are dealing with a single node cluster or when you have no devices to work with
     # Now, if you want to use "sdb" and "sdc" then your list should look like the following:
-    gluster_device_whitelist='--whitelist b,c'
+    distributed_file_device_whitelist='--whitelist b,c'
 
     # this list is to indicate the directories you want to use to set up volumes IF you don't have any devices to work with
-    # If you don't want to use directories, simply leave this parameter empty (gluster_directory_path=''). This should be the case for single node clusters
+    # If you don't want to use directories, simply leave this parameter empty (distributed_file_directory_path=''). This should be the case for single node clusters
     # If you don't have devices, include the path and folder name that can be used instead to set up the volumes for a multi-node cluster: 
-    gluster_directory_path='--directorypath /mnt/volumes/gluster'
+    distributed_file_directory_path='--directorypath /mnt/volumes/gluster'
     
 The other platform specific parameters are self explanatory. In the config file, there is a "fillmein" value which indicates that you
 defintely have to fill those in to have bindle working properly. The others are deafult values that you may use unless otherwise stated.

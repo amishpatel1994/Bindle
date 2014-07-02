@@ -126,7 +126,7 @@ sudo perl -pi -e  "s/#JAVA_HOME=\/usr\/lib\/jvm\/openjdk-6-jdk/JAVA_HOME=\/usr\/
 mkdir -p /mnt/seqware-oozie
 # mount gluster here
 # this call will mount the shared gluster disk for clusters or simply fail if not using gluster in single node mode
-mount -t glusterfs master:/gv0 /mnt/seqware-oozie
+/vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_mount.sh /mnt/seqware-oozie
 chmod a+rx /mnt
 chmod a+rwx /mnt/seqware-oozie
 chown -R seqware:seqware /mnt/seqware-oozie

@@ -25,7 +25,7 @@ foreach my $dev (@list) {
   print "DEV: $dev\n";
   # if already mounted just add directory
   if(mounted($dev)) {
-    print "  NOT MOUTING SINCE ALREADY MOUNTED!\n";
+    print "  NOT MOUNTING SINCE ALREADY MOUNTED!\n";
     my $mount_path = find_mount_path($dev);
     # if ecryptfs was success, the mount path gets encrypted added to it
     if(setup_ecryptfs($mount_path)) {

@@ -56,7 +56,7 @@ mkdir -p /usr/tmp/
 if [ ! -d "/mnt/seqware-oozie" ]; then
   mkdir -p /mnt/seqware-oozie
   #mount %{MASTER_PIP}:/mnt/seqware-oozie /mnt/seqware-oozie
-  mount -t glusterfs master:/gv0 /mnt/seqware-oozie
+  /vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_mount.sh /mnt/seqware-oozie
 fi
 mkdir -p /mnt/datastore
 echo 'rpcbind : ALL' >> /etc/hosts.deny

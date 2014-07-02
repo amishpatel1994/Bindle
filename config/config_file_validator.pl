@@ -33,7 +33,7 @@ say "FIX: Fill in the <fillmein> parts!" if (Dumper($configs->param(-block => "p
 say "FIX: Please change the type param under platform to $actual_type" if ($configs->param('platform.type') ne $actual_type);
 say "FIX: Invalid ssh_key_name. Please get rid of '.pem' extension and only include the key's name!" if ($configs->param('platform.ssh_key_name') =~ /\.pem$/);
 
-validate_gluster_info($configs->param('platform.gluster_device_whitelist'),$configs->param('platform.gluster_directory_path'));
+validate_distributed_file_info($configs->param('platform.distributed_file_device_whitelist'),$configs->param('platform.distributed_file_directory_path'));
 
 say "Finished Platform Validation";
 say "\n\t\t\tCLUSTER BLOCK VALIDATION FOR $cluster_name";
@@ -52,21 +52,21 @@ say "Finished Cluster Validation";
 
 # subroutines
 
-sub validate_gluster_info {
-  my ($gluster_whitelist,$gluster_directory) = @_;
+sub validate_distributed_file_info {
+  my ($distributed_file_device_whitelist,$distributed_file_directory) = @_;
 
   # cluster for other environments
   if ($use_cluster && !$launch_bionimbus){
-    say "FIX: Please fill in gluster_device_whitelist or gluster_directory_path" if ($gluster_whitelist eq "" && $gluster_directory eq "");
-    say "FIX: Don't use 'a or a1' as your gluster device since 'sda','xvda',etc. are mounted at root" if ($gluster_whitelist =~ /a|a[0-9]/);
-    say "FIX: Change the format for gluster_device_whitelist('--whitelist b,c,d')" unless ($gluster_whitelist =~ /^--whitelist [bcdef]/);
-    say "FIX: Don't include spaces between your list for gluster_device_whitelist('--whitelist b,c,d')" if ($gluster_whitelist =~ /, /);
-    say "FIX: Change the format for gluster_directory_path('--directorypath /mnt/vols/gluster') and only include one path!" unless  ($gluster_directory =~ /^--directorypath \//);
-    say "FIX: Only include one directory for gluster_directory_path(Ex. '--directorypath /mnt/vols/gluster')" if ($gluster_directory =~ /,/);
+    say "FIX: Please fill in distributed_file_device_whitelist or distributed_file_directory_path" if ($distributed_file_device_whitelist eq "" && $distributed_file_directory eq "");
+    say "FIX: Don't use 'a or a1' as your distributed file device since 'sda','xvda',etc. are mounted at root" if ($distributed_file_device_whitelist =~ /a|a[0-9]/);
+    say "FIX: Change the format for distributed_file_device_whitelist('--whitelist b,c,d')" unless ($distributed_file_device_whitelist =~ /^--whitelist [bcdef]/);
+    say "FIX: Don't include spaces between your list for distributed_file_device_whitelist('--whitelist b,c,d')" if ($distributed_file_device_whitelist =~ /, /);
+    say "FIX: Change the format for distributed_file_directory_path('--directorypath /mnt/vols/gluster') and only include one path!" unless  ($distributed_file_directory =~ /^--directorypath \//);
+    say "FIX: Only include one directory for distributed_file_directory_path(Ex. '--directorypath /mnt/vols/gluster')" if ($distributed_file_directory =~ /,/);
   }
   # validation for single node clusters and bionimbus clusters
   else{
-      say "FIX: Leave gluster_device_whitelist and gluster_directory_path values empty ('') because you don't need it!!" unless ($gluster_whitelist eq "" &&  $gluster_directory eq "");
+      say "FIX: Leave distributed_file_device_whitelist and distributed_file_directory_path values empty ('') because you don't need it!!" unless ($distributed_file_device_whitelist eq "" &&  $distributed_file_directory eq "");
   }
 
 }
