@@ -47,8 +47,10 @@ sub prepare_files {
         copy("templates/settings", "$work_dir/$node/settings");
         copy("templates/user_data.txt", "$work_dir/$node/user_data.txt");
         # script for setting up hadoop hdfs
-        copy("templates/setup_hdfs_volumes.pl", "$work_dir/$node/setup_hdfs_volumes.pl");
-        copy("templates/setup_volumes.pl", "$work_dir/$node/setup_volumes.pl");
+        copy("templates/setup_hdfs_volumes.sh", "$work_dir/$node/setup_hdfs_volumes.sh");
+        copy("templates/setup_volumes.sh", "$work_dir/$node/setup_volumes.sh");
+        mark_executable("$work_dir/$node/setup_hdfs_volumes.sh");
+        mark_executable("$work_dir/$node/setup_volumes.sh");
         foreach my $distributed_file (qw(gluster moosefs)) {
             autoreplace("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh", $configs);
             autoreplace("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh", $configs);
