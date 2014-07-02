@@ -118,4 +118,4 @@ perl /vagrant/setup_volumes.pl --output /vagrant/volumes_report.txt %{DISTRIBUTE
 # version 3.4 appears to suffer from the problem described here: https://bugzilla.redhat.com/show_bug.cgi?id=977497
 # see Gluster's site for more info, this is the official way to install 3.5: http://download.gluster.org/pub/gluster/glusterfs/3.5/3.5.0/Ubuntu/Ubuntu.README
 /vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_install.sh
-perl /vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_volumes.pl --dir-map /vagrant/volumes_report.txt --output /vagrant/distributed_file_volumes_report.txt
+/vagrant/setup_%{DISTRIBUTED_FILE_SYSTEM}_volumes.sh --dir-map /vagrant/volumes_report.txt --output /vagrant/distributed_file_volumes_report.txt
