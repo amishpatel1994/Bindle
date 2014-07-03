@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mfsmount -h master -l $1
+mfsmount $1 -H master
