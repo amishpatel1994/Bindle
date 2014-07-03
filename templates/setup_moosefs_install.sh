@@ -66,7 +66,7 @@ DEFAULT_DATA_PATH=$LOCALSTATEDIR
 DEFAULT_CFG=$SYSCONFDIR/mfsmaster.cfg
 COMPAT_CFG=/etc/mfsmaster.cfg
 
-EOF 
+EOF
 
   # Write mfsmaster boot script - part 3 - the body (no interpolation, append)
   cat << 'EOF' >> /etc/init.d/mfsmaster
@@ -166,6 +166,7 @@ esac
 exit 0
 EOF
 
+  chmod a+x /etc/init.d/mfsmaster
   update-rc.d mfsmaster defaults
   /etc/init.d/mfsmaster start
 fi

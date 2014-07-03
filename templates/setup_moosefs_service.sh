@@ -85,7 +85,7 @@ DEFAULT_WORKING_USER=$USER
 DEFAULT_WORKING_GROUP=$GROUP
 DEFAULT_DATA_PATH=$LOCALSTATEDIR
 DEFAULT_CFG=$SYSCONFDIR/mfschunkserver.cfg
-COMPAT_CFG=/etc/mfsmaster.cfg
+COMPAT_CFG=/etc/mfschunkserver.cfg
 
 EOF
 
@@ -180,5 +180,6 @@ EOF
 
 ### Now the /etc/init.d file has been written. We can continue. 
 
+chmod a+x /etc/init.d/mfschunkserver
 update-rc.d mfschunkserver defaults
 /etc/init.d/mfschunkserver start
