@@ -52,11 +52,11 @@ sub prepare_files {
         mark_executable("$work_dir/$node/setup_hdfs_volumes.sh");
         mark_executable("$work_dir/$node/setup_volumes.sh");
         foreach my $distributed_file (qw(gluster moosefs)) {
-            autoreplace("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh", $configs);
-            autoreplace("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh", $configs);
-            autoreplace("templates/setup_${distributed_file}_peers.sh", "$work_dir/$node/setup_${distributed_file}_peers.sh", $configs);
-            autoreplace("templates/setup_${distributed_file}_service.sh", "$work_dir/$node/setup_${distributed_file}_service.sh", $configs);
-            autoreplace("templates/setup_${distributed_file}_volumes.sh", "$work_dir/$node/setup_${distributed_file}_volumes.sh", $configs);
+            replace("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh", '%{HOST}', $node);
+            replace("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh", '%{HOST}', $node);
+            replace("templates/setup_${distributed_file}_peers.sh", "$work_dir/$node/setup_${distributed_file}_peers.sh", '%{HOST}', $node);
+            replace("templates/setup_${distributed_file}_service.sh", "$work_dir/$node/setup_${distributed_file}_service.sh", '%{HOST}', $node);
+            replace("templates/setup_${distributed_file}_volumes.sh", "$work_dir/$node/setup_${distributed_file}_volumes.sh", '%{HOST}', $node);
             mark_executable("$work_dir/$node/setup_${distributed_file}_install.sh");
             mark_executable("$work_dir/$node/setup_${distributed_file}_mount.sh");
             mark_executable("$work_dir/$node/setup_${distributed_file}_peers.sh");
