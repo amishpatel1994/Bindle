@@ -53,7 +53,7 @@ do
 	record=($line)
 	host = ${record[0]}
 	directory = ${record[1]}
-	if [ $host -eq "%{HOST}" ]; then
+	if [ "$host" == "%{HOST}" ]; then
 		chown -R $USER:$GROUP $directory
 		echo $directory >> $SYSCONFDIR/mfshdd.cfg
 	fi

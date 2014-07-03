@@ -21,7 +21,7 @@ USER=mfs
 GROUP=mfs
 
 ## Now setup the master
-if [ "%{HOST}" -eq "master" ]
+if [ "%{HOST}" == "master" ]
 then
   cp $SYSCONFDIR/mfsmaster.cfg.dist $SYSCONFDIR/mfsmaster.cfg
   cp $SYSCONFDIR/mfsmetalogger.cfg.dist $SYSCONFDIR/mfsmetalogger.cfg
