@@ -35,6 +35,11 @@ case $i in
 esac
 done
 
+### Create the user
+
+groupadd -f $GROUP
+id -u $USER &>/dev/null || useradd -g $GROUP $USER
+
 ### Now we set up the chunkservers.
 
 cp $SYSCONFDIR/mfschunkserver.cfg.dist $SYSCONFDIR/mfschunkserver.cfg

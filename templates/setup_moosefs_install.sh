@@ -20,6 +20,9 @@ LOCALSTATEDIR=/usr/local/var/mfs
 USER=mfs
 GROUP=mfs
 
+groupadd -f $GROUP
+id -u $USER &>/dev/null || useradd -g $GROUP $USER
+
 ## Now setup the master
 if [ "%{HOST}" == "master" ]
 then
