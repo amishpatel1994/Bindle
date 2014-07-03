@@ -10,5 +10,4 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get -q -y --force-yes install ecryptfs-utils
 
 # now call the perl code to find ephemeral disks and mount them
-perl /vagrant/setup_hdfs_volumes.pl
-
+/vagrant/setup_hdfs_volumes.sh

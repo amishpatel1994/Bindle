@@ -13,7 +13,7 @@ usermod -a -G mapred seqware
 
 # setup the HDFS drives
 # TODO
-###perl /vagrant/setup_hdfs_volumes.pl
+###/vagrant/setup_hdfs_volumes.sh
 
 # configuration for hadoop
 cp /vagrant/conf.worker.tar.gz /etc/hadoop/

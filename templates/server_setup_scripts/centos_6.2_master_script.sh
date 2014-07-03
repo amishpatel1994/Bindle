@@ -82,7 +82,7 @@ sudo -u hdfs hadoop namenode -format -force
 
 # setup the HDFS drives
 # TODO: this perl script should do all of the above
-#perl /vagrant/setup_hdfs_volumes.pl
+#/vagrant/setup_hdfs_volumes.sh
 
 # start all the hadoop daemons
 for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
