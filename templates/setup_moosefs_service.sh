@@ -33,6 +33,7 @@ case $i in
             # unknown option
     ;;
 esac
+done
 
 ### Now we set up the chunkservers.
 
