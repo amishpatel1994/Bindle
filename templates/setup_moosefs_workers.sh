@@ -56,13 +56,8 @@ EOF
 # Configure mfshdd.cfg, but only for this server
 while read line
 do
-	record=($line)
-	host = ${record[0]}
-	directory = ${record[1]}
-	if [ "$host" == "%{HOST}" ]; then
-		chown -R $USER:$GROUP $directory
-		echo $directory >> $SYSCONFDIR/mfshdd.cfg
-	fi
+  chown -R $USER:$GROUP $line
+  echo $line >> $SYSCONFDIR/mfshdd.cfg
 done < $DIRMAP
 
 # Write mfschunkserver boot script - part 1 - the header (no interpolation, overwrite)
