@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Fail for now
-exit 1
-
 # Build and install moosefs
 
 ## Use on all machines to build a basic setup
