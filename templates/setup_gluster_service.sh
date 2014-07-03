@@ -9,7 +9,7 @@ use Getopt::Long;
 # ASSUMPTIONS:
 # *
 # TODO
-# * 
+# *
 
 my $host;
 my $dir_map;

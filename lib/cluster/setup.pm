@@ -32,9 +32,9 @@ sub setup_os_config_scripts {
 sub prepare_files {
     my ($class, $cluster_configs, $configs, $work_dir, $vb_ram, $vb_cores, @ebs_vols) = @_;
     # Vagrantfile, the core file used by Vagrant that defines each of our nodes
-    $configs = setup_vagrantfile("templates/Vagrantfile_start.template", 
-                      "templates/Vagrantfile_part.template", 
-                      "templates/Vagrantfile_end.template", 
+    $configs = setup_vagrantfile("templates/Vagrantfile_start.template",
+                      "templates/Vagrantfile_part.template",
+                      "templates/Vagrantfile_end.template",
                       $cluster_configs, $configs, "$work_dir", $vb_ram, $vb_cores, @ebs_vols);
 
     foreach my $node (sort keys %{$cluster_configs}) {
@@ -52,16 +52,10 @@ sub prepare_files {
         mark_executable("$work_dir/$node/setup_hdfs_volumes.sh");
         mark_executable("$work_dir/$node/setup_volumes.sh");
         foreach my $distributed_file (qw(gluster moosefs)) {
-            replace("templates/setup_${distributed_file}_install.sh", "$work_dir/$node/setup_${distributed_file}_install.sh", '%{HOST}', $node);
-            replace("templates/setup_${distributed_file}_mount.sh", "$work_dir/$node/setup_${distributed_file}_mount.sh", '%{HOST}', $node);
-            replace("templates/setup_${distributed_file}_peers.sh", "$work_dir/$node/setup_${distributed_file}_peers.sh", '%{HOST}', $node);
-            replace("templates/setup_${distributed_file}_service.sh", "$work_dir/$node/setup_${distributed_file}_service.sh", '%{HOST}', $node);
-            replace("templates/setup_${distributed_file}_volumes.sh", "$work_dir/$node/setup_${distributed_file}_volumes.sh", '%{HOST}', $node);
-            mark_executable("$work_dir/$node/setup_${distributed_file}_install.sh");
-            mark_executable("$work_dir/$node/setup_${distributed_file}_mount.sh");
-            mark_executable("$work_dir/$node/setup_${distributed_file}_peers.sh");
-            mark_executable("$work_dir/$node/setup_${distributed_file}_service.sh");
-            mark_executable("$work_dir/$node/setup_${distributed_file}_volumes.sh");
+            foreach my $phase (qw(install mount master service volumes workers)) {
+                replace("templates/setup_${distributed_file}_${phase}.sh", "$work_dir/$node/setup_${distributed_file}_${phase}.sh", '%{HOST}', $node);
+                mark_executable("$work_dir/$node/setup_${distributed_file}_${phase}.sh");
+            }
         }
         # these are used for when the box is rebooted, it setups the /etc/hosts file for example
         replace("templates/hadoop-init-master", "$work_dir/$node/hadoop-init-master", '%{HOST}', $node);

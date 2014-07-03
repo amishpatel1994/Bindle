@@ -97,7 +97,7 @@
       "second_pass_scripts": [
         [ "templates/server_setup_scripts/ubuntu_12.04_hosts_script.sh" ],
         [ ],
-        [ "templates/server_setup_scripts/ubuntu_12.04_distributed_file_peers_to_master.sh" ],
+        [ "templates/server_setup_scripts/ubuntu_12.04_distributed_file_workers.sh" ],
         [ ],
         [ "templates/server_setup_scripts/ubuntu_12.04_worker_script.sh"],
         [ ],
