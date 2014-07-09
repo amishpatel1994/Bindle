@@ -68,7 +68,7 @@
       # NOTE: this is an array of arrays, all the scripts in the array in the first cell of the outer array are run across the full cluster, then the second...
       "second_pass_scripts": [
         [ "templates/server_setup_scripts/ubuntu_12.04_hosts_script.sh" ],
-        [ "templates/server_setup_scripts/ubuntu_12.04_distributed_file_peers.sh" ],
+        [ "templates/server_setup_scripts/ubuntu_12.04_distributed_file_workers.sh" ],
         [ ],
         [ "templates/server_setup_scripts/ubuntu_12.04_distributed_file_service.sh",
           "templates/server_setup_scripts/ubuntu_12.04_master_script.sh" ],
