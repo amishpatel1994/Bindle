@@ -13,7 +13,7 @@ SYSCONFDIR=/usr/local/etc/mfs
 LOCALSTATEDIR=/usr/local/var/mfs
 USER=mfs
 GROUP=mfs
-print "HELLO WORLD! THIS DOES GET CALLED\n";
+
 for i in "$@"
 do
 case $i in

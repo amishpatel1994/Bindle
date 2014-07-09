@@ -9,7 +9,6 @@ $Config{useithreads} or die('Recompile Perl with threads to run this program.');
 use threads;
 use Storable 'dclone';
 use Carp::Always;
-use Data::Dumper;
 
 my ($configs, $cluster_configs, $work_dir);
 
@@ -280,7 +279,6 @@ sub setup_os_config_scripts_list {
 
     foreach my $script (@scripts) {
         autoreplace($script, "$output.temp", $configs); 
-        print Dumper($script);
         run("cat $output.temp >> $output");
         run("rm $output.temp");
     }
