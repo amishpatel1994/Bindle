@@ -190,7 +190,7 @@ sub get_host_id_from_vagrant_status {
     if ($status =~ /Current machine states:\s+(\S+)\s+(active|running)/) { # openstack and vcloud ar running, aws is running
         return $1;
     } 
-    die 'Was unable to get node infomation';
+    die 'Was unable to get node information. If you are using VirtualBox, you might want to run the launcher script using "--vb-avoid-port-forwarding" parameter. This simply ensures that there is no port forwarding occuring!';
 }
 
 sub host_information {
