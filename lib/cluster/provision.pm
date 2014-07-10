@@ -294,7 +294,7 @@ sub autoreplace {
 
     open my $in, '<', $src;
     open my $out, '>', $dest;
-
+    
     while(<$in>) {
         foreach my $key (sort keys %{$local_configs}) {
             my $value = $local_configs->{$key};
@@ -302,7 +302,6 @@ sub autoreplace {
         }
         print $out $_;
     }
-
     close $in, $out;
 }
 

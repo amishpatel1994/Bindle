@@ -15,9 +15,10 @@ my $host;
 my $dir_map;
 
 GetOptions (
-  "host=s" => \$host
+  "host=s" => \$host,
   "dir-map=s" => \$dir_map,
 );
+
 
 my $vol_report = `cat /vagrant/volumes_report.txt`;
 # if there are no volumes present, don't set up gluster volumes!
@@ -26,12 +27,12 @@ if ($vol_report eq ""){
   exit;
 }
 
+
 my $out_txt;
 
 open IN, "<$host" or die "Cannot open file $host\n";
 while(<IN>) {
   chomp;
-  next unless ($_ eq 'master');      # Only for the master node, logic moved from an old grep in the caller
   my @a = split /\s+/;
   next if (scalar(@a) != 2);
   my $cmd = "gluster peer probe $a[1]";
@@ -49,4 +50,3 @@ while(<IN>) {
   sleep 5;
 }
 close IN;
-
