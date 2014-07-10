@@ -54,6 +54,7 @@ my $def_config = 0;
 my $json_template_file = "";
 my $use_rsync = 0;
 my $avoid_master = 0;
+my $vb_port_forwarding = 0;
 GetOptions (
     "use-aws"        => \$launch_aws,
     "use-virtualbox" => \$launch_vb,
@@ -67,6 +68,7 @@ GetOptions (
     "use-default-config" => \$def_config,
     "vb-ram=i"       => \$vb_ram,
     "vb-cores=i"     => \$vb_cores,
+    "vb-avoid-port-forwarding" => \$vb_port_forwarding,
     "aws-ebs=s{1,}"  => \@ebs_vols,
     "avoid-master"   => \$avoid_master,
     "help"           => \$help,
@@ -141,7 +143,7 @@ else{
 my $default_seqware_build_cmd = 'mvn clean install -DskipTests';
 $configs->{'SEQWARE_BUILD_CMD'} //= $default_seqware_build_cmd; 
 $configs->{'MAVEN_MIRROR'} //= ""; 
-
+$configs->{'VB_FORWARD_PORT'} = $vb_port_forwarding; 
 # process server scripts into single bash script
 # this basically cats files together after doing an autoreplace
 # that fills in variables from the config part of the JSON
