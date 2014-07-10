@@ -53,7 +53,7 @@ my $help = (scalar @ARGV == 0)? 1 : 0;
 my $def_config = 0;
 my $json_template_file = "";
 my $use_rsync = 0;
-
+my $avoid_master = 0;
 GetOptions (
     "use-aws"        => \$launch_aws,
     "use-virtualbox" => \$launch_vb,
@@ -68,6 +68,7 @@ GetOptions (
     "vb-ram=i"       => \$vb_ram,
     "vb-cores=i"     => \$vb_cores,
     "aws-ebs=s{1,}"  => \@ebs_vols,
+    "avoid-master"   => \$avoid_master,
     "help"           => \$help,
 );
 
@@ -154,7 +155,7 @@ launch_instances($cluster_configs) unless ($skip_launch);
 
 # FIXME: this is hacking on the configs object which is not good
 # this finds all the host IP addresses and then runs the second provisioning on them
-cluster::provision->provision_instances($configs, $cluster_configs, $work_dir, $launch_vcloud, $use_rsync) unless ($skip_launch);
+cluster::provision->provision_instances($configs, $cluster_configs, $work_dir, $launch_vcloud, $use_rsync, $avoid_master) unless ($skip_launch);
 say "FINISHED";
 
 # SUBROUTINES
