@@ -155,3 +155,6 @@ cp /vagrant/hadoop-init-master /etc/init.d/hadoop-init
 chown root:root /etc/init.d/hadoop-init
 chmod 755 /etc/init.d/hadoop-init
 sysv-rc-conf hadoop-init on
+
+# enables the command 'oozie jobs' to work on the master node
+echo 'export OOZIE_URL=http://master:11000/oozie' >> ~/.profile
